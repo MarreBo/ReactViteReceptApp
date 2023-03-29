@@ -6,39 +6,37 @@ import ApiCall from './ApiCall'
 
 function Searchbar() {
   const [category, setCategory] = useState("");
+  const [triggerSearch, setTriggerSearch] = useState(false);
   return (
     <>
       <br/>
+      <Row>
+      <div className="text">
+      Search food type
+      </div>    
+      </Row>
       <Row className="searchbarRow">        
-        <Col sm={4}> 
-       
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label className="text">Search food type</Form.Label>
+        <Col sm={4}>     
+        <Form.Group className="mb-3" controlId="formBasicEmail">        
           <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="i.e. pasta, chicken etc"
-              className="me-2"
+              className="me-2 ms-2"
               aria-label="Search"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />          
-            <Button>
-              <Search></Search>
+            <Button variant="secondary" onClick={(e) => setTriggerSearch(!triggerSearch)} className="searchbutton">            
+              <Search className='mb-1'>                
+              </Search>
             </Button>
           </Form>
           </Form.Group>
           
         </Col>
       </Row>
-<Container className="d-flex justify-content-center">
-      <Col sm={4}>
-        
-        <ApiCall food={category}/>
-        
-        </Col> 
-      </Container>
-
+        <ApiCall triggerSearch={triggerSearch} food={category}/>
     </>
   );
 }

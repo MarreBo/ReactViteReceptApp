@@ -1,42 +1,56 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import React, {Component} from 'react'
 import './Searchbar.css'
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row,Card } from "react-bootstrap";
 
 function ApiCall(props) {
     const [recipes, setRecipes] = useState([])
 
-    const fetchRecipeData = () => {
+    const fetchRecipeData = () => { 
+      if(props.food != "")
+      {     
+      {
       fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${props.food}`, {
         headers: {
             'Content-Type': 'application/json',
             'X-Api-Key': 'ce78851c6bc24bf4944626cc0c04848e'
         }
+      
     })
     .then(response => {
     return response.json()
     })
     .then(data => {
-      setRecipes(data.results)
+     
+        setRecipes(data.results);
+      
+      
     })
+  }
+}
     }
+
+    useEffect(() => {     
+      fetchRecipeData(props.food);
+    }, [props.triggerSearch]);
 
     return (
       <>
-      <Row className="searchbarRow">
-        <button onClick={fetchRecipeData}>Search</button>
-      </Row>
-      <div>
+   
         {recipes.length > 0 && (
-          <ul>
-            {recipes.map(recipe => (
-              <li key={recipe.id}><img src={recipe.image}/><br/>{recipe.title}</li>
-            ))}
-          </ul>
-        )}
-      </div>
+          <div className="justify-content-center">
+             {recipes.map(recipe => (
+              
+            <Card className='m-2'>
+              <Card.Img className='w-100' variant="top" src={recipe.image} />
+               <Card.Body>
+                 <Card.Title>{recipe.title}</Card.Title>                        
+               </Card.Body>
+             </Card>             
+      ))}
+      </div>          
+        )}      
       </>
-
     )
 }
 

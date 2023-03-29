@@ -13,9 +13,9 @@ function TopNavbar() {
        <Navbar bg="light" variant="light">        
           <Navbar.Brand href="#home"> <EggFried/> </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Hem</Nav.Link>
-            <Nav.Link href="#features">Recept</Nav.Link>
-            <Nav.Link href="#pricing">Extra</Nav.Link>
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Recepies</Nav.Link>
+            <Nav.Link href="#pricing">Contact</Nav.Link>
           </Nav>        
       </Navbar>
       
