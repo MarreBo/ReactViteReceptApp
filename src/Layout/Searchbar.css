@@ -7,8 +7,16 @@ justify-content: center;
 .text{
     font-family: "Papyrus";
     text-align: center;
-    font-weight: bold;
+    font-weight: bold;    
+}
 
-    
-    
+li{
+    list-style: none;
+
+}
+
+@media(min-width: 575px) {
+    ul{
+        padding-inline-start: 0px!important;
+    }
 }
