@@ -35,8 +35,7 @@ function ApiCall(props) {
     }, [props.triggerSearch]);
 
     return (
-      <>
-   
+      <>   
         {recipes.length > 0 && (
           <div className="justify-content-center">
              {recipes.map(recipe => (
